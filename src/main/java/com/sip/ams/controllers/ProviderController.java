@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import com.sip.ams.services.ProviderService;
 
 @RestController
 @RequestMapping("providers")
+@CrossOrigin("*")
 public class ProviderController {
 	
 	//@Autowired
@@ -83,6 +85,7 @@ public class ProviderController {
 			return new ResponseEntity<>(opt.get(), HttpStatus.FOUND); // code 302
 	}
 	
+	
 	@DeleteMapping("/{id}")
 	@Operation(
 	        summary = "Suppression d'un provider par son id",
@@ -105,6 +108,7 @@ public class ProviderController {
 			return ResponseEntity.noContent().build();   // code 204
 		}
 	}
+	
 	
 	@PutMapping("/")
 	@Operation(
