@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.sip.ams.entities.Article;
+import com.sip.ams.dto.ArticleDTO;
 
 public interface ArticleService {  //CRUD
 	
@@ -15,5 +16,5 @@ public interface ArticleService {  //CRUD
 
 	public void deleteArticleById(int id); // DELETE
 
-	//public Provider updateProvider(Provider provider);
+	public Article updateArticle(ArticleDTO articleModel); // Update d'un article
 }

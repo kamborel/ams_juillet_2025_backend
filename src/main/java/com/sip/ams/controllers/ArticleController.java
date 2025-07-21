@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sip.ams.entities.Article;
+import com.sip.ams.dto.ArticleDTO;
 import com.sip.ams.entities.Provider;
 import com.sip.ams.services.ArticleService;
 import com.sip.ams.services.ProviderService;
@@ -132,22 +133,9 @@ public class ArticleController {
         @ApiResponse(responseCode = "200", description = "Si mise à jour avec succès"),
         @ApiResponse(responseCode = "404", description = "Article inexistant")
     })
-	public ResponseEntity<Article> updateArticle(@RequestBody Article article)
+	public ResponseEntity<Article> updateArticle(@RequestBody ArticleDTO articleDto)
 	{
-		
-		//Optional<Provider> opt = providerRepository.findById(provider.getId());
-		
-		Optional<Article> opt = this.articleService.getArticleById(article.getId());
-		
-		if(opt.isEmpty())
-			return ResponseEntity.notFound().build();    // code 404
-		else {
-			Article savedArticle = opt.get();
-			savedArticle.setLibelle(article.getLibelle());
-			savedArticle.setPrice(article.getPrice());
-			savedArticle.setProvider(article.getProvider());
-			return new ResponseEntity<>(this.articleService.saveArticle(savedArticle), HttpStatus.OK);   // code 204
-		}
+		return new ResponseEntity<>(this.articleService.updateArticle(articleDto), HttpStatus.CREATED);
 	}
 	
 	
