@@ -82,7 +82,7 @@ public class ProviderController {
 		if(opt.isEmpty())
 			return  ResponseEntity.notFound().build();
 		else
-			return new ResponseEntity<>(opt.get(), HttpStatus.FOUND); // code 302
+			return new ResponseEntity<>(opt.get(), HttpStatus.OK); // code 200
 	}
 	
 	
